@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Atom">
+    <meta name="author" content="XUE Kaiwen">
+    <meta name="description" content="CITY SUSHI">
+    <meta name="keywords" content="city, sushi, restaurant">
+    <link rel="stylesheet" href="../default.css" media="all">
+    <link rel="stylesheet" href="homeDesign.css" media="all">
+    <script type="text/javascript" src="https://courses.cs.cityu.edu.hk/cs2204/cs2204cw3.js"></script>
+      <script>
+          function promote(){
+              var message = ["Lunch Time Special Offer - $188 Sushi Set 12 Pieces", "CITY SUSHI guarantees healthiest and most delicious foods", "Valentine coming together enjoys 10% off"];
+              m = Math.floor(Math.random()*3);
+              document.getElementById("pmt").innerHTML = message[m];
+              function pmt(){
+                m += 1;
+                if (m == 3) {
+                  m = 0;
+                }
+                document.getElementById("pmt").innerHTML = message[m];
+              }
+              setInterval(pmt,3000);
+          }
+      </script>
+    <title>Home</title>
+  </head>
+  <body onload="promote()">
+
+<div id="header">
+  <h1>CITY SUSHI <img src="home-images/Sushi-96.png" alt="The logo of City Sushi"></h1>
+</div>
+
+<div id="information">
+  <ul>
+    <li><span><b>Address</b></span><br>
+      83 Tat Chee Avenue,<br>Kowloon,<br>Hong Kong</li>
+    <li><span><b>Tel</b></span><br>
+      3442-7788</li>
+    <li><span><b>Busniess Hours</b></span><br>
+      12:00-3:00<br>6:30-11:30pm<br>Last Order 10:30pm</li>
+    <li><span><b>Signature Dishes</b></span><br>
+    Fole gras with mustard seeds and green onions;<br>Bisque-a smmoth and creamy, French potage;<br>Croque Monsieur-baked or fried bolled ham<br>and cheese sandwich</li>
+    <li><span><b>Location</b></span><br><img src="home-images/location.jpg" alt="Map of the location of the restaurant"></li>
+  </ul>
+  <a href="../order/order.html"><img src="home-images/place.png" alt="place order button"></a><!--I designed the icon myself on Paint, so currently I don't have anything to acknowledge-->
+</div>
+
+<div id="promotion">
+  <div class="text">
+    <h2 id="pmt"></h2>
+  </div>
+  <div class="video">
+    <video id="v" controls="controls" autoplay onended="changeVideo()">
+      <source id="v1" src="https://courses.cs.cityu.edu.hk/cs2204/barbecue.mp4" type="video/mp4">
+        <source id="v2" src="https://courses.cs.cityu.edu.hk/cs2204/barbecue.ogg" type="video/ogg">
+    </video>
+  </div>
+</div>
+
+<div id="reservation">
+  <form id="reserve" name="reserve" action="home.html" onsubmit="return checkForm()" method="post">
+    <fieldset>
+      <legend>Reservation</legend>
+      <p>
+        Date<input id="f1" class="in1" type="text" name="Date" value="dd/mm/yyyy"></p>
+        <p>Time<select id="f2" class="in1" name="Time">
+              <option value="12:00-2:00pm">12:00-2:00pm</option>
+              <option value="12:00-2:00pm">6:30-8:30pm</option>
+              <option value="12:00-2:00pm">8:30-10:30pm</option>
+            </select></p>
+            <p>No. of guests<input id="f3" class="in1" type="number" name="No. of guests" value=""></p>
+            <p id="checkResult"></p>
+            <p><input class="in2" type="submit" value="Check Availability">
+            <input class="in2" type="reset" value="Reset"></p>
+        </fieldset>
+      </form>
+</div>
+
+<div id="footer">
+  <p>©CityU2017 Sources of images and texts from Wikimedia commons and courtesy of <a href="https://icons8.com/">icon pack by icon8</a>, designed by <a href="../design.html">CS2204 XUE Kaiwen</a></p>
+</div>
+<script>
+var order = 0;
+  function changeVideo(){
+    v = document.getElementById("v");
+    src = document.querySelectorAll("source");
+    if (order % 2 == 0) {
+      src[0].src = "https://courses.cs.cityu.edu.hk/cs2204/cakemaking-s.mp4";
+      src[1].src = "https://courses.cs.cityu.edu.hk/cs2204/cakemaking-s.ogg";
+      v.load();
+    }
+    else {
+      src[0].src = "https://courses.cs.cityu.edu.hk/cs2204/barbecue.mp4";
+      src[1].src = "https://courses.cs.cityu.edu.hk/cs2204/barbecue.ogg";
+      v.load();
+    }
+    order++;
+  }
+
+  function checkForm(){
+    formContent1 = document.getElementById("f1").value;
+    formContent1 = formContent1.replace(/\s+/g,"");
+    formContent2 = document.getElementById("f2").value;
+    formContent2 = formContent2.replace(/\s+/g,"");
+    formContent3 = document.getElementById("f3").value;
+    formContent3 = formContent3.replace(/\s+/g,"");
+    result = document.getElementById("checkResult");
+    if (formContent1 == "" || formContent2 == "" || formContent3 == "") {
+      result.innerHTML = "Data not completed, please re-enter.";
+      result.style.color = "red";
+    }
+    else if (reserve(formContent1,formContent2,formContent3)) {
+      result.innerHTML = "Reservation done. Thank you.";
+      result.style.color = "black";
+    }
+    else {
+      result.innerHTML = "No table is available for the date and time.";
+      result.style.color = "black";
+    }
+    return false;
+  }
+
+  cancellation = document.querySelector("input[type = 'reset']");
+  cancellation.onclick = checkCancel;
+
+  function checkCancel(){
+    if (confirm("Are you sure you want to reset all?")) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+</script>
+  </body>
+</html>

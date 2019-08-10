@@ -1,0 +1,75 @@
+#menu{
+  border: 3px grey solid;
+  border-radius: 24px;
+  margin: auto;
+  width: 90%;
+  position: relative;
+  overflow: auto;
+}
+#menu h2{
+  font-size: 1.2em;
+}
+#shead,#drhead,#dehead{
+  border-top: 1px black solid;
+  border-right: 1px black solid;
+  border-left: 1px black solid;
+  border-radius: 4px;
+  width: 33%;
+  float: left;
+  background-color: silver;
+  margin:auto;
+}
+#mthings{
+  border-right: 1px black solid;
+  border-bottom: 1px black solid;
+  border-left: 1px black solid;
+  width: 99%;
+}
+input[type = "text"]{
+  width: 40%;
+}
+.sushi,.drink,.dessert{
+  border: 1px yellow solid;
+  width: 19.5%;
+  display: inline-block;
+}
+
+#items{
+  width: 30%;
+  border: 3px grey solid;
+  border-radius: 24px;
+  margin:auto;
+  transition:background-color 1s linear;
+  position: relative;
+}
+#items:hover{
+  background-color: #99FFCC;
+}
+#items h2, #items p{
+  text-align: center;
+}
+table,th,td{
+  width: 80%;
+  margin: auto;
+  border:1px black solid;
+}
+thead{
+  background-color: #F5A9F2;
+}
+tfoot{
+  background-color: #F3E2A9;
+}
+tbody tr:nth-child(odd){
+  background-color: #81F7F3;
+}
+tbody tr:nth-child(even){
+  background-color: #FFBF00;
+}
+td:nth-child(2){
+  text-align: right;
+}
+
+#items a{
+  color: black;
+  text-decoration: none;
+}

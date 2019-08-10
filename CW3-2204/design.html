@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Atom">
+    <meta name="author" content="XUE Kaiwen">
+    <meta name="information" content="Design Page">
+    <meta name="keywords" content="design, copyright">
+    <title>Design Page</title>
+    <style media="screen">
+      span{
+        color: #2E64FE;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="cw1">
+      <h1>Design Page</h1>
+      <p>Name: XUE Kaiwen</p>
+      <p>SID: 55199704</p>
+      <p>CW3 Sushi image source: <a href="http://www.ritzcarlton.com/en/hotels/mexico/cancun/dining/sushi-bar">Sushi bar</a></p><br>
+    </div>
+
+    <div id="cw2">
+      <h2>(m)</h2>
+      <p>I use TWO kinds of position (And I think they are quite meaningful):</p>
+      <ol>
+        <li>I use RELATIVE POSITION in all blocks (with id selector) and set all value to 0 so that I can give absolute position to everything inside the blocks.</li>
+        <li>I use ABSOLUTE POSITION for menu items' headings (with pseudo class selector) so that their position will not change menu items are shown.</li>
+      </ol>
+      <h2>(n)</h2>
+      <p>I use FOUR kinds of CSS3 techniques:</p>
+      <ol>
+        <li>Every block's (excluding header and footer) border is designed with ROUND CORNER.</li>
+        <li>I use GRADIENT to design the background color of the header (linear change from orange to yellow).</li>
+        <li>I use TRANSITION of background color of information and order block. Whenever they are hovered, the background color will change from white to some kind of light green</li>
+        <li>I use ANIMATION in the promotion block to highlight it so that people are more likely to be attracted to it.</li>
+      </ol>
+      <h2>(o)</h2>
+      <p>My styles are grouped as follows</p>
+      <ul>
+        <li>All of my styles are link style.</li>
+        <li>I created 4 stylesheets: default.css, homeDesign.css, orderDesign.css, and orderPrint.css</li>
+        <li>defualt.css is in the upper level folder of all HTML files. It controls the styles of header and footer.</li>
+        <li>homeDesign.css is grouped together with home.html. It controls the styles (information block and promotion block) of home page.</li>
+        <li>orderDesign.css is grouped together with order.html. It controls the styles (menu block and order table block) of order page.</li>
+        <li>orderPrint.css is grouped together with order.html. It shows the style when this page is printed.</li>
+      </ul>
+    </div><br>
+
+    <div id="cw3">
+      <h2>CW3 event handlers:</h2>
+      <h3>A. Home Page</h3>
+      <ul>
+        <li>(HTML event handler) To show a random promotion text on page load, I declared a function <span>promote()</span> and set the event handler onload in the body tag.</li>
+        <li>(HTML event handler) To change the video when the playing is over, I declared a function <span>changeVideo()</span> and set the event handler onended in the corresponding video tag.</li>
+        <li>(HTML event handler) To check input of the reservation form, I declared a function <span>checkForm()</span> and set the event handler onclick in the submission button.</li>
+        <li>(JavaScript event handler) To cancel the event of clearing forms, I declared a function <span>checkCancel()</span> and set the event handler onclick in JavaScript codes by selecting the button in DOM</li>
+      </ul>
+      <h3>B. Home Page</h3>
+      <ul>
+        <li>(HTML event handler) To create menu items by javascript corresponding to different buttons and the default setting, <br>
+        on page load, I set event handler onload to call the function <span>displayImages("sushi")</span> as default the displayed menu pages. I also set eventhandlers onclick for all three menu titles to display different items.</li>
+        <li>(JavaScript event handler) To add tablerows for each "add" button, I use DOM to select dynamic HTML elements created by JS and set onclick event handlers to call the function <span>addOrder()</span>.</li>
+        <li>Other two functions <span>recal() and undo()</span> are not called by event handlers. They are invoked simply inside other functions automatically.</li>
+      </ul>
+    </div><br>
+
+    <div id="footer">
+      <p>©CityU2017 Sources of images and texts from Wikimedia commons and courtesy of <a href="https://icons8.com/">icon pack by icon8</a>, designed by <a href="design.html">CS2204 XUE Kaiwen</a></p>
+    </div>
+
+  </body>
+</html>

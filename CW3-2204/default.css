@@ -1,0 +1,17 @@
+#header{
+  width:99%;
+  background: -webkit-linear-gradient(orange,yellow);
+  font-family: Felix Titling,verdana,sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+  position: relative;
+}
+#header h1{
+  text-align: center;
+}
+#footer{
+  font-family:georgia;
+  clear:both;
+  position: relative;
+}

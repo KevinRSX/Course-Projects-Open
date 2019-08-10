@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Atom">
+    <meta name="author" content="XUE Kaiwen">
+    <meta name="description" content="CITY SUSHI">
+    <meta name="keywords" content="city, sushi, order, menu, restaurant">
+    <link rel="stylesheet" href="../default.css" media="all">
+    <link rel="stylesheet" href="orderDesign.css" media="all">
+    <link rel="stylesheet" href="orderPrint.css" media="print">
+    <script src="https://courses.cs.cityu.edu.hk/cs2204/cs2204cw3.js"></script>
+    <script>
+      function changeHeadColor(p1,p2){
+        document.querySelector(p1).style.backgroundColor = p2;
+      }
+
+      function addOrder(){
+        var newRow = document.createElement("tr");
+
+        var newCell1 = document.createElement("td");
+        var dishAdded = document.createTextNode(this.id);
+        newCell1.appendChild(dishAdded)
+        newRow.appendChild(newCell1);
+
+        var newCell2 = document.createElement("td");
+        var qty = document.getElementById(this.id + "qty");
+        var dishQuantity = document.createTextNode(qty.value);
+        newCell2.appendChild(dishQuantity);
+        newRow.appendChild(newCell2);
+
+        document.querySelector("tbody").appendChild(newRow);
+
+        recal()
+      }
+
+      function recal(){
+        sum = 0;
+        qtyList = document.querySelectorAll("tbody tr td:nth-child(2)");
+        for (var i = 0; i < qtyList.length; i++) {
+          sum += parseInt(qtyList[i].innerHTML);
+        }
+        document.querySelector("tfoot tr td:nth-child(2)").innerHTML = sum;
+      }
+
+      function undo(){
+        toRemove = document.querySelector("tbody tr:last-child");
+        document.querySelector("tbody").removeChild(toRemove);
+        recal();
+      }
+    </script>
+    <title>Order Page</title>
+  </head>
+  <body onload="displayImages('sushi')">
+
+<div id="header">
+      <h1>CITY SUSHI <img src="order-images/Sushi-96.png" alt="The logo of City Sushi"></h1>
+</div>
+
+<div id="menu">
+  <h2>Menu</h2>
+  <div id="mheaders">
+    <p id="shead" onclick="displayImages('sushi')">Sushi</p>
+    <p id="drhead" onclick="displayImages('drink')">Drinks</p>
+    <p id="dehead" onclick="displayImages('dessert')">Desserts</p>
+  </div>
+  <div id="mthings">
+  </div>
+</div>
+<script>
+//Create js menu items
+
+function displayImages(item){
+  var menuPage = document.querySelector("#mthings")
+  var menuItems = getMenuItems(item);
+  changeHeadColor("#shead","white");
+  changeHeadColor("#drhead","silver");
+  changeHeadColor("#dehead","silver"); //default online setting of images
+
+  menuPage.innerHTML = "";
+
+  for (var i = 0; i < menuItems.length; i++) {
+    var sp = document.createElement("div");
+    sp.setAttribute("class",item);
+
+    var itemImage = document.createElement("img");
+    itemImage.setAttribute("src","order-images/" + menuItems[i].photo);
+    itemImage.setAttribute("alt",menuItems[i].photo);
+    itemImage.setAttribute("id","p" + (i + 1));
+    sp.appendChild(itemImage);
+
+    var addButton = document.createElement("button");
+    var buttonValue = document.createTextNode("Add");
+    addButton.setAttribute("id",menuItems[i].desc);
+    addButton.appendChild(buttonValue);
+    sp.appendChild(addButton);
+    addButton.addEventListener("click",addOrder);
+
+    var addText = document.createElement("input");
+    addText.setAttribute("type","number");
+    addText.setAttribute("id",menuItems[i].desc + "qty");
+    addText.setAttribute("value","1");
+    sp.appendChild(addText);
+
+    document.querySelector("#mthings").appendChild(sp);
+  }
+
+  var anniu=document.querySelectorAll("button");
+
+  switch (item) {
+    case "sushi":
+      changeHeadColor("#shead","white");
+      changeHeadColor("#drhead","silver");
+      changeHeadColor("#dehead","silver");
+      break;
+    case "drink":
+      changeHeadColor("#shead","silver");
+      changeHeadColor("#drhead","white");
+      changeHeadColor("#dehead","silver");
+      break;
+    case "dessert":
+      changeHeadColor("#shead","silver");
+      changeHeadColor("#drhead","silver");
+      changeHeadColor("#dehead","white");
+      break;
+  }
+}
+</script>
+
+<div id="items">
+  <h2>Ordered Items</h2>
+  <p>14 Mar 2017 15:59</p>
+  <table>
+    <caption>Table:4-No. of Guests 3</caption>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Qty</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td>0</td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+  </script>
+  <p onclick="undo()">UNDO</p>
+</div>
+
+<div id="footer">
+  <p>©CityU2017 Sources of images and texts from Wikimedia commons and courtesy of <a href="https://icons8.com/">icon pack by icon8</a>, designed by <a href="../design.html">CS2204 XUE Kaiwen</a></p>
+</div>
+
+  </body>
+</html>
