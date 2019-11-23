@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CRE Exercise</title>
+    <link rel="stylesheet" type="text/css" href="exstyle.css">
+    <script src="contextLib.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    var gcount = 0;
+    var right = 0; wrong = 0;
+
+    function showItems()
+    {
+      document.querySelector("#head button").style.display = "none";
+      document.querySelector("#items").style.display = "block";
+    }
+
+    function showContext(c)
+    {
+      if (gcount >= context.length)
+      {
+        showScore();
+        return;
+      }
+
+      if (c != 0)
+      {
+        if (document.querySelector("#items p").innerHTML == "")
+        {
+          alert("Give an answer first!");
+          return;
+        }
+      }
+      document.querySelector("#items p").innerHTML = "";
+
+      toGet = document.querySelectorAll("#items table td:last-child");
+      do
+      {
+        k1 = Math.floor(Math.random() * context.length);
+      } while (repeat[k1]);
+      repeat[k1] = true;
+      var k2 = Math.round(Math.random());
+      toGet[0].innerHTML = context[k1][k2];
+      toGet[1].innerHTML = context[k1][(k2 + 1) % 2];
+      document.querySelector("#items button").style.display = "none";
+      gcount++;
+      return k1;
+    }
+
+    function showResult()
+    {
+      if (gcount == 0 || document.querySelector("#items p").innerHTML != "")
+      {
+        return;
+      }
+      if (this.innerHTML == context[k1][0])
+      {
+        document.querySelector("#items p").innerHTML = "RIGHT!";
+        document.querySelector("#items p").style.color = "green";
+        right++;
+      }
+      else
+      {
+        document.querySelector("#items p").innerHTML = "WRONG!";
+        document.querySelector("#items p").style.color = "red";
+        wrong++;
+      }
+    }
+
+    function showScore()
+    {
+      items = document.querySelector("#items");
+      items.innerHTML = "";
+      var p1 = document.createElement("p");
+      var text1 = document.createTextNode((right + wrong) + " questions in total");
+      p1.appendChild(text1);
+      items.appendChild(p1);
+      var p2 = document.createElement("p");
+      var text2 = document.createTextNode("You did " + right + " of them right");
+      p2.appendChild(text2);
+      items.appendChild(p2);
+      var p3 = document.createElement("p");
+      var text3 = document.createTextNode("Proper rate: " + (100 * right / (right + wrong)) + "%.");
+      p3.appendChild(text3);
+      items.appendChild(p3);
+    }
+    </script>
+  </head>
+  <body>
+    <div id="head">
+      <h2>选出正确项</h2>
+      <button type="button" onclick="showItems()">Start</button>
+    </div>
+    <div id="items">
+      <table>
+        <tr>
+          <td>A</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>B</td>
+          <td></td>
+        </tr>
+      </table>
+      <br/>
+      <button class="butt" name="button" onclick = "showContext(0)">Show</button>
+      <button class="butt" name="button" onclick = "showContext(gcount)">Next</button>
+      <button class="butt" name="button" onclick = "showScore()">Done</button>
+      <p></p>
+    </div>
+    <script type="text/javascript">
+      document.querySelector("#items").style.display = "none";
+      choices = document.querySelectorAll("#items table td:last-child");
+      for (i = 0; i < choices.length; i++)
+      {
+        choices[i].onclick = showResult;
+      }
+    </script>
+    <div id="copyright">
+      <p>Made by XUE Kaiwen, Kevin</p>
+      <p>The context library comes from <a href="http://hkcre.blogspot.hk/2010/09/use-of-chinese-error-identification-1.html">HK CRE study group.</a></p>
+    </div>
+  </body>
+</html>

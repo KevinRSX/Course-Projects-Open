@@ -1,0 +1,38 @@
+#head button
+{
+  background-color: #01DFA5;
+  border: 0.5px solid #01DFA5;
+  border-radius: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#items
+{
+  border: 1px solid silver;
+  padding: 2%;
+}
+#items table
+{
+  margin:auto;
+  width:70%;
+  height:70%;
+}
+#items table,tr,td
+{
+  border: 0.5px solid black;
+}
+#items td:last-child
+{
+  width:70%;
+}
+#items .butt
+{
+  margin-left: 15%;
+}
+#items tr:hover
+{
+  background-color: #01DFA5;
+}
